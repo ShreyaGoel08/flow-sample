@@ -32,5 +32,6 @@ steps:
     files: bin/flow-linux-arm64.zip
     title: 1.0.0
   tags: 1.0.0
+  
   when:
     event: tag
