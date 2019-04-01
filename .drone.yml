@@ -31,7 +31,10 @@ steps:
     api_key: 33b51744caf1dc73335bed0a77b779a2e51602c0
     files: bin/flow-linux-arm64.zip
     title: 1.0.0
-  tags: 1.0.0
+  tag:
+    commands:
+      - git tag v1.0.0
+      - git push origin v1.0.0
   
   when:
     event: tag
