@@ -24,17 +24,17 @@ steps:
   - make all
   - ./bin/flow --help
   - zip ./bin/flow-linux-arm64.zip ./bin/flow
+  - git tag 1.0.0 && git push upstream 1.0.0
   
 - name: publish
   image: plugins/github-release
   environment:
     GITHUB_RELEASE_VERSION: v0.7.2
   commands:
-    - "github-release release --user ossdev07 --repo flow-sample --tag v1.0.0 --name v1.0.0"
+    - github-release release --user ossdev07 --repo flow-sample --tag v1.0.0 --name v1.0.0
+    - github-release upload  --user ossdev07 --repo flow-sample --tag v1.0.0 --name flow-linux-arm64 --file ./bin/flow-linux-arm64.zip
   settings:
     api_key: 33b51744caf1dc73335bed0a77b779a2e51602c0
-    files: bin/flow-linux-arm64.zip
-    title: 1.0.0
   
   when:
     event: tag
