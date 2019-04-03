@@ -29,7 +29,7 @@ steps:
   image: plugins/github-release
   
   commands:
-    - git tag 1.0.0 && git push origin 1.0.0
+    - git tag v1.0.0 && git push origin v1.0.0
   
   settings:
     api_key: 33b51744caf1dc73335bed0a77b779a2e51602c0
@@ -37,4 +37,4 @@ steps:
       - ./bin/flow-linux-arm64.zip
   
   when:
-    event: tag
+    event: push
