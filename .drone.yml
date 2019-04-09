@@ -24,17 +24,18 @@ steps:
   - make all
   - ./bin/flow --help
   - zip ./bin/flow-linux-arm64.zip ./bin/flow
+  when:
+    event: tag 
   
 - name: publish
   image: plugins/github-release
-  
+  environment:
+    GITHUB_RELEASE_VERSION: v0.7.2
   commands:
-    - git push origin v1.0.0
-  
-  settings:
-    api_key: 33b51744caf1dc73335bed0a77b779a2e51602c0
-    files:
-      - ./bin/flow-linux-arm64.zip
+    - "github-release release --user ossdev07 --repo flow-sample --tag v1.0.1 --name v1.0.1"
+    - "github-release upload  --user ossdev07 --repo flow-sample --tag v1.0.1 --name flow-linux-arm64 --file ./bin/flow-linux-arm64.zip"
+    - "git tag v1.0.1 && git push origin v1.0.1"
+  secrets: 33b51744caf1dc73335bed0a77b779a2e51602c0
   
   when:
-    event: push
+    event: tag
