@@ -30,7 +30,7 @@ steps:
 - name: publish
   image: plugins/github-release
   settings:
-    api_key: 33b51744caf1dc73335bed0a77b779a2e51602c0
+    api_key: xxxxxxxx
       from_secret: github_token
     files:
       - ./bin/flow-linux-arm64.zip
