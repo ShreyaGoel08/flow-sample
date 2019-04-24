@@ -24,13 +24,20 @@ steps:
   - make all
   - ./bin/flow --help
   - zip ./bin/flow-linux-arm64.zip ./bin/flow
+  
+- name: build-tag
+  image: plugins/github-release
+  commands:
+  - "go build -v -ldflags \"-X main.version=${DRONE_TAG##v}\" -a -tags netgo -o release/linux/amd64/drone-github-release"
   when:
-    event: tag 
+    event:
+    - tag
   
 - name: publish
   image: plugins/github-release
   settings:
     api_key: 983273049cf924e758e0c251bfdbc7aa6080ba9f
+    event: tag
     files:
       - ./bin/flow-linux-arm64.zip
   
